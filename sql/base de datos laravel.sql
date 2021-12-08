@@ -8,7 +8,9 @@ USE laravel;
 CREATE TABLE player(
     id int NOT NULL AUTO_INCREMENT,
     username varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
+    email varchar(255) NOT NULL UNIQUE,
+    password varchar(255) NOT NULL,
+    role varchar(255) NOT NULL,
     steamUsername varchar(255),
     originUsername varchar(255),
     epicgamesUsername varchar(255),
@@ -18,16 +20,18 @@ CREATE TABLE player(
 );
 
 /*INSERTA REGISTROS EN LA TABLA PLAYER*/
-insert into player (username, email, steamUsername, originUsername, epicgamesUsername, battlenetUsername, riotUsername) values ('armandohyeah', 'armandoramossanchez@gmail.com', 'armandohyeah', 'armandohyeah', 'armandohyeah', 'Armandohyeah-9856', 'armandohyeah');
-insert into player (username, email, epicgamesUsername) values ('martin08', 'martin@gmail.com', 'Martin-08');
-insert into player (username, email, steamUsername, originUsername, epicgamesUsername) values ('carmina90', 'carmina@gmail.com', 'Carmina-90', 'Carmina90', 'Carmina-90');
-insert into player (username, email, riotUsername) values ('iria5', 'iria@gmail.com', 'IriA-005');
-insert into player (username, email, steamUsername, riotUsername) values ('MarioRS', 'mrs@gmail.com', 'MarioRS', 'MarioRS');
-insert into player (username, email, battlenetUsername) values ('manolo60', 'manolo6060@gmail.com', 'Manolo60-8568');
-insert into player (username, email, battlenetUsername, riotUsername) values ('carmen60', 'carmensanchezt@gmail.com', 'Carmen60-5542','Carmen-nemraC');
-insert into player (username, email, riotUsername) values ('victorS', 'victor@gmail.com', 'rotcivLITTLE');
-insert into player (username, email, originUsername) values ('BlasLlario', 'blasllario@gmail.com', 'blcrfe28');
-insert into player (username, email, steamUsername, originUsername, epicgamesUsername, battlenetUsername) values ('sergio-martinez', 'sergiomartinez@gmail.com', 'erBilly', 'erBilly', 'erBilly', 'erBilly-8965');
+insert into player (username, email, password, role, steamUsername, originUsername, epicgamesUsername, battlenetUsername, riotUsername) values ('admin', 'admin@admin.com', '12345678', 'admin', 'admin01', 'admin01', 'admin01', 'admin01', 'admin01');
+insert into player (username, email, password, role, steamUsername, originUsername, epicgamesUsername, battlenetUsername, riotUsername) values ('user', 'user@user.com', '12345678', 'user', 'user01', 'user01', 'user01', 'user01', 'user01');
+insert into player (username, email, password, role, steamUsername, originUsername, epicgamesUsername, battlenetUsername, riotUsername) values ('armandohyeah', 'armandoramossanchez@gmail.com', '14651as5fg191a', 'user', 'armandohyeah', 'armandohyeah', 'armandohyeah', 'Armandohyeah-9856', 'armandohyeah');
+insert into player (username, email, password, role, epicgamesUsername) values ('martin08', 'martin@gmail.com', 'adsf19qwer', 'user', 'Martin-08');
+insert into player (username, email, password, role, steamUsername, originUsername, epicgamesUsername) values ('carmina90', 'carmina@gmail.com', 'asdd1519v1a9sd10f', 'user', 'Carmina-90', 'Carmina90', 'Carmina-90');
+insert into player (username, email, password, role, riotUsername) values ('iria5', 'iria@gmail.com', 'er1g5d1fg890', 'user', 'IriA-005');
+insert into player (username, email, password, role, steamUsername, riotUsername) values ('MarioRS', 'mrs@gmail.com', '0f98a01f8a18', 'user', 'MarioRS', 'MarioRS');
+insert into player (username, email, password, role, battlenetUsername) values ('manolo60', 'manolo6060@gmail.com', 'a9f48e01f5a', 'user', 'Manolo60-8568');
+insert into player (username, email, password, role, battlenetUsername, riotUsername) values ('carmen60', 'carmensanchezt@gmail.com', 'as1df91e981f', 'user', 'Carmen60-5542','Carmen-nemraC');
+insert into player (username, email, password, role, riotUsername) values ('victorS', 'victor@gmail.com', '1ad9sf1091d', 'user', 'rotcivLITTLE');
+insert into player (username, email, password, role, originUsername) values ('BlasLlario', 'blasllario@gmail.com', '1gh91g89h', 'user', 'blcrfe28');
+insert into player (username, email, password, role, steamUsername, originUsername, epicgamesUsername, battlenetUsername) values ('sergio-gonzalez', 'sergiogonzalez@gmail.com', '1r4rt98d4s2f', 'user', 'erBilly', 'erBilly', 'erBilly', 'erBilly-8965');
 
 /*CREA TABLA GAME*/
 CREATE TABLE game(
@@ -52,12 +56,14 @@ CREATE TABLE party(
     OwnerID int NOT NULL,
     GameID int NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_Owner_Party FOREIGN KEY (OwnerID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_Game_Party FOREIGN KEY (GameID) REFERENCES game (id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FK_OwnerID_Party FOREIGN KEY (OwnerID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_GameID_Party FOREIGN KEY (GameID) REFERENCES game (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*INSERTA REGISTROS EN LA TABLA PARTY*/
 insert into party (name, OwnerID, GameID) values ('Vente a jugar al lolete', 1, 5);
+insert into party (name, OwnerID, GameID) values ('lolillos', 6, 5);
+insert into party (name, OwnerID, GameID) values ('titanes y parkour', 5, 2);
 
 /*CREA TABLA MESSAGE*/
 CREATE TABLE message(
@@ -74,6 +80,9 @@ CREATE TABLE message(
 /*INSERTA REGISTROS EN LA TABLA MESSAGE*/
 insert into message (message, date, FromPlayer, PartyID) values ('¿Alguien para un 1 vs 1?', '2021-12-08', 1, 1);
 insert into message (message, date, FromPlayer, PartyID) values ('Cuando quieras', '2021-12-08', 8, 1);
+insert into message (message, date, FromPlayer, PartyID) values ('Busco duo en bot', '2021-12-08', 6, 2);
+insert into message (message, date, FromPlayer, PartyID) values ('a farmear puntos de armas', '2021-12-08', 5, 3);
+insert into message (message, date, FromPlayer, PartyID) values ('Cuenta conmigo.', '2021-12-08', 11, 3);
 
 /*CREA TABLA MEMBERS*/
 CREATE TABLE members(
@@ -81,8 +90,8 @@ CREATE TABLE members(
     PartyID int NOT NULL,
     PlayerID int NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_FromPlayer_Members FOREIGN KEY (PartyID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_PartyID_Members FOREIGN KEY (PartyID) REFERENCES party (id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FK_PartyID_Members FOREIGN KEY (PartyID) REFERENCES party (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_PlayerID_Members FOREIGN KEY (PlayerID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*INSERTA REGISTROS EN LA TABLA MESSAGE*/
@@ -109,6 +118,3 @@ insert into friendship (Player1_ID, Player2_ID) values (2, 4);
 insert into friendship (Player1_ID, Player2_ID) values (8, 9);
 insert into friendship (Player1_ID, Player2_ID) values (1, 9);
 insert into friendship (Player1_ID, Player2_ID) values (1, 8);
-
-
-

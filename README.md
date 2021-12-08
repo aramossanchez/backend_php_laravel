@@ -33,6 +33,7 @@
     * Crear player nuevo -->
     * Editar player ya existente -->
     * Borrar player ya existente -->
+    * Login en la aplicación --> 
     * Logout de la aplicación -->
 
 * GAME

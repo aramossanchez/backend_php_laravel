@@ -84,22 +84,22 @@ insert into message (message, date, FromPlayer, PartyID) values ('Busco duo en b
 insert into message (message, date, FromPlayer, PartyID) values ('a farmear puntos de armas', '2021-12-08', 5, 3);
 insert into message (message, date, FromPlayer, PartyID) values ('Cuenta conmigo.', '2021-12-08', 11, 3);
 
-/*CREA TABLA MEMBERS*/
-CREATE TABLE members(
+/*CREA TABLA MEMBER*/
+CREATE TABLE member(
     id int NOT NULL AUTO_INCREMENT,
     PartyID int NOT NULL,
     PlayerID int NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_PartyID_Members FOREIGN KEY (PartyID) REFERENCES party (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_PlayerID_Members FOREIGN KEY (PlayerID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FK_PartyID_Member FOREIGN KEY (PartyID) REFERENCES party (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_PlayerID_Member FOREIGN KEY (PlayerID) REFERENCES player (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*INSERTA REGISTROS EN LA TABLA MESSAGE*/
-insert into members (PartyID, PlayerID) values (1, 1);
-insert into members (PartyID, PlayerID) values (1, 4);
-insert into members (PartyID, PlayerID) values (1, 5);
-insert into members (PartyID, PlayerID) values (1, 7);
-insert into members (PartyID, PlayerID) values (1, 8);
+insert into member (PartyID, PlayerID) values (1, 1);
+insert into member (PartyID, PlayerID) values (1, 4);
+insert into member (PartyID, PlayerID) values (1, 5);
+insert into member (PartyID, PlayerID) values (1, 7);
+insert into member (PartyID, PlayerID) values (1, 8);
 
 /*CREA TABLA FRIENDSHIP*/
 CREATE TABLE friendship(

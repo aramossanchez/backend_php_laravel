@@ -26,6 +26,16 @@
 * Message tiene una relación con **party de 1:N** (una party puede tener 0, 1 o varios messages, y un message solo puede tener una party).
 * Party tiene una relación con **game de 1:N** (una party solo puede tener un game, y un game puede tener 0, 1 o varias parties).
 
+## TECNOLOGÍAS UTILIZADAS EN EL PROYECTO
+* SQL --> usado como sistema de base de datos.
+* PHP --> lenguaje de programación usado en la API.
+* Composer --> usado como gestor de dependencias.
+* Laravel --> framework de PHP usado para la creación de la API.
+* Eloquent --> usado para acceso y manejo de la base de datos del proyecto.
+* Passport --> usado para el sistema de autenticación en la API.
+* Git --> usado para tener el proyecto en repositorio de github.
+* Docker --> usado para crear un contenedor de la aplicación.
+* Heroku --> usado para tener la API deployada.
 
 ## ENDPOINTS DE LA API
 * PLAYER

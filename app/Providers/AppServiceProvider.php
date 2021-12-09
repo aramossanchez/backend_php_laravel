@@ -24,10 +24,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()//UrlGenerator $url)
+    public function boot(UrlGenerator $url)
     {
-        // if(env('REDIRECT_HTTPS')){
-        //     $url->formatScheme('https://');
-        // }
+        if(env('REDIRECT_HTTPS')){
+            $url->formatScheme('https://');
+        }
     }
 }

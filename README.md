@@ -1,79 +1,66 @@
-# Backend PHP Laravel
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## Solicitan desde GeeksHubs Academy realizar una aplicación para una empresa. El objetivo es que permita que los empleados puedan contactar con otros compañeros para formar grupos para jugar a un videojuego, con el objetivo de poder compartir un rato de ocio afterwork.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## Los requisitos funcionales de la aplicación son los siguientes:
-* Los usuarios se tienen que poder registrar a la aplicación, estableciendo un usuario/contraseña.
-* Los usuarios tienen que autenticarse a la aplicación haciendo login.
-* Los usuarios tienen que poder crear Parties (grupos) por un determinado videojuego.
-* Los usuarios tienen que poder buscar Parties seleccionando un videojuego.
-* Los usuarios pueden entrar y salir de una Party.
-* Los usuarios tienen que poder enviar mensajes a la Party. Estos mensajes tienen que poder ser editados y borrados por su usuario creador.
-* Los mensajes que existan en una Party se tienen que visualizar como un chat común.
-* Los usuarios pueden introducir y modificar sus datos de perfil, por ejemplo, su usuario de Steam.
-* Los usuarios tienen que poder hacer logout de la aplicación web.
+## About Laravel
 
-## BASE DE DATOS Y SUS RELACIONES
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-***
-![Base de datos y sus relaciones](./proyecto_backend/app/Images/screenshot1.jpg)
-***
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-* Player tiene una relación con **party de 1:N** (una party solo tiene un player creador, y un player puede ser creador de 0, 1 o varias parties).
-* Player tiene una relación con **party de N:N**, creando la tabla **member** (una party puede tener 1 o varios players como miembros, y un player puede pertenecer a 0, 1 o varias parties).
-* Player tiene una relacion con **player de N:N**, creando la tabla **friendship** (un player puede ser amigo de 0, 1 o varios players).
-* Player tiene una relación con **message de 1:N** (un message solo puede tener un player creador, y un player puede tener 0, 1 o varios messages).
-* Message tiene una relación con **party de 1:N** (una party puede tener 0, 1 o varios messages, y un message solo puede tener una party).
-* Party tiene una relación con **game de 1:N** (una party solo puede tener un game, y un game puede tener 0, 1 o varias parties).
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## TECNOLOGÍAS UTILIZADAS EN EL PROYECTO
-* SQL --> usado como sistema de base de datos.
-* PHP --> lenguaje de programación usado en la API.
-* Composer --> usado como gestor de dependencias.
-* Laravel --> framework de PHP usado para la creación de la API.
-* Eloquent --> usado para acceso y manejo de la base de datos del proyecto.
-* Passport --> usado para el sistema de autenticación en la API.
-* Git --> usado para tener alojado el proyecto en repositorio de github.
-* Docker --> usado para crear un contenedor de la aplicación.
-* Heroku --> usado para tener la API deployada.
+## Learning Laravel
 
-## ENDPOINTS DE LA API
-* PLAYER
-    * Ver todos los players -->
-    * Crear player nuevo -->
-    * Editar player ya existente -->
-    * Borrar player ya existente -->
-    * Login en la aplicación --> 
-    * Logout de la aplicación -->
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-* GAME
-    * Ver todos los games --> 
-    * Crear game nuevo --> 
-    * Editar game ya existente --> 
-    * Borrar game ya existente --> 
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-* PARTY
-    * Ver todas las parties --> 
-    * Crear party nueva --> 
-    * Editar party ya existente --> 
-    * Borrar party ya existente --> 
-    * Buscar party por game --> 
+## Laravel Sponsors
 
-* MESSAGE
-    * Ver todos los messages --> 
-    * Crear message nuevo --> 
-    * Editar message ya existente --> 
-    * Borrar message ya existente --> 
-    * Buscar messages por party --> 
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-* MEMBER
-    * Ver todos los members --> 
-    * Crear member nuevo --> 
-    * Editar member ya existente --> 
-    * Borrar member ya existente --> 
+### Premium Partners
 
-* FRIENDSHIP
-    * Ver todos los friendships --> 
-    * Crear friendship nuevo --> 
-    * Editar friendship ya existente --> 
-    * Borrar friendship ya existente --> 
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[CMS Max](https://www.cmsmax.com/)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
+- **[Romega Software](https://romegasoftware.com)**
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

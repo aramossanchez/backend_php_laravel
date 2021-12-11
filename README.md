@@ -63,11 +63,12 @@
     * Borrar party ya existente --> /api/deleteParty (DELETE)
 
 * MESSAGE
-    * Ver todos los messages --> 
-    * Crear message nuevo --> 
-    * Editar message ya existente --> 
-    * Borrar message ya existente --> 
-    * Buscar messages por party --> 
+    * Ver todos los messages --> /api/messages (GET)
+    * Buscar message por ID --> /api/messageByID (POST)
+    * Buscar messages por party --> /api/messageByPartyID (POST)
+    * Crear message nuevo --> /api/newMessage (POST)
+    * Editar message ya existente --> /api/updateMessage (PUT)
+    * Borrar message ya existente --> /api/deleteMessage (DELETE)
 
 * MEMBER
     * Ver todos los members --> 

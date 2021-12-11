@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +75,7 @@ Route::post('partyByID', [PartyController::class, "partyByID"]);
 //PARTY POR ID DE GAME
 Route::post('partyByIDGame', [PartyController::class, "partyByGameID"]);
 
-//NUEVO PARTY
+//NUEVA PARTY
 Route::post('newParty', [PartyController::class, "partyAdd"]);
 
 //MODIFICAR PARTY
@@ -82,3 +83,25 @@ Route::put('updateParty', [PartyController::class, "partyUpdate"]);
 
 //BORRAR PARTY
 Route::delete('deleteParty', [PartyController::class, "partyDelete"]);
+
+//*********************//
+//ENDPOINTS DE MESSAGES//
+//*********************//
+
+//LISTA DE TODOS LOS MESSAGES
+Route::get('messages', [MessageController::class, "messagesAll"]);
+
+//MESSAGE POR ID
+Route::post('messageByID', [MessageController::class, "messageByID"]);
+
+//MESSAGE POR ID DE PARTY
+Route::post('messageByPartyID', [MessageController::class, "messageByPartyID"]);
+
+//NUEVO MESSAGE
+Route::post('newMessage', [MessageController::class, "messageAdd"]);
+
+//MODIFICAR MESSAGE
+Route::put('updateMessage', [MessageController::class, "messageUpdate"]);
+
+//BORRAR MESSAGE
+Route::delete('deleteMessage', [MessageController::class, "messageDelete"]);

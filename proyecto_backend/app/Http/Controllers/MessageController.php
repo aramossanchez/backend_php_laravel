@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
-use App\Models\Party;
+use App\Models\Message;
 
-class PartyController extends Controller
+class MessageController extends Controller
 {
-    //OBTENER LISTADO DE TODAS LAS PARTIES
+    //OBTENER LISTADO DE TODOS LOS MESSAGES
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partiesAll(){
+    public function messagesAll(){
         try {
 
-            $parties = Party::all();
-            return $parties;
+            $messages = Message::all();
+            return $messages;
 
         } catch (QueryException $error) {
 
@@ -27,17 +27,17 @@ class PartyController extends Controller
         }
     }
 
-    //OBTENER PARTY POR ID
+    //OBTENER MESSAGE POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partyByID(Request $request){
+    public function messageByID(Request $request){
 
         $id = $request->input('id');
 
         try {
 
-            $party = Party::all()
+            $message = Message::all()
             ->where('id', "=", $id);
-            return $party;
+            return $message;
 
         } catch (QueryException $error) {
 
@@ -48,19 +48,19 @@ class PartyController extends Controller
         }
     }
 
-    //OBTENER PARTY POR ID DE GAME
+    //OBTENEMOS MESSAGE POR ID DE PARTY
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partyByGameID(Request $request){
+    public function messageByPartyID(Request $request){
 
         $id = $request->input('id');
 
         try {
-            $party = Party::selectRaw('parties.name , games.title, players.username')
-            ->join('games', 'parties.GameID', '=', 'games.id')
-            ->where('parties.GameID', "=", $id)
-            ->join('players', 'parties.OwnerID', '=', 'players.id')
+            $message = Message::selectRaw('messages.message, players.username, parties.name')
+            ->join('parties', 'parties.id', '=', 'messages.PartyID')
+            ->where('messages.PartyID', "=", $id)
+            ->join('players', 'players.id', '=', 'messages.FromPlayer')
             ->get();
-            return $party;
+            return $message;
 
         } catch (QueryException $error) {
 
@@ -71,21 +71,23 @@ class PartyController extends Controller
         }
     }
 
-    //CREAR PARTY
+    //CREAR MESSAGE
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partyAdd (Request $request){
+    public function messageAdd (Request $request){
 
-        $name = $request->input('name');
-        $OwnerID = $request->input('OwnerID');
-        $GameID = $request->input('GameID');
+        $message = $request->input('message');
+        $date = $request->input('date');
+        $FromPlayer = $request->input('FromPlayer');
+        $PartyID = $request->input('PartyID');
 
         try {
 
-            return Party::create(
+            return Message::create(
                 [
-                    'name' => $name,
-                    'OwnerID' => $OwnerID,
-                    'GameID' => $GameID
+                    'message' => $message,
+                    'date' => $date,
+                    'FromPlayer' => $FromPlayer,
+                    'PartyID' => $PartyID
                 ]
             );
 
@@ -99,26 +101,28 @@ class PartyController extends Controller
         }
     }
 
-    //MODIFICAR PARTY
+    //MODIFICAR MESSAGE
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partyUpdate (Request $request){
+    public function messageUpdate (Request $request){
 
         $id = $request->input('id');
-        $name = $request->input('name');
-        $OwnerID = $request->input('OwnerID');
-        $GameID = $request->input('GameID');
+        $message = $request->input('message');
+        $date = $request->input('date');
+        $FromPlayer = $request->input('FromPlayer');
+        $PartyID = $request->input('PartyID');
 
         try {
 
-            $party = Party::where('id', '=', $id)
+            $message = Message::where('id', '=', $id)
             ->update(
                 [
-                    'name' => $name,
-                    'OwnerID' => $OwnerID,
-                    'GameID' => $GameID
+                    'message' => $message,
+                    'date' => $date,
+                    'FromPlayer' => $FromPlayer,
+                    'PartyID' => $PartyID
                 ]
             );
-            return Party::all()
+            return Message::all()
             ->where('id', "=", $id);
 
         } catch (QueryException $error) {
@@ -131,29 +135,29 @@ class PartyController extends Controller
         }
     }
 
-    //BORRAR PARTY POR ID
+    //BORRAR MESSAGE POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function partyDelete(Request $request){
+    public function messageDelete(Request $request){
 
         $id = $request->input('id');
 
         try {
-            //BUSCA LA PARTY POR ID. SI EXISTE, BORRA LA PARTY. SI NO, SACA MENSAJE DE ERROR
-            $arrayParty = Party::all()
+            //BUSCA EL MESSAGE POR ID. SI EXISTE, BORRA EL MESSAGE. SI NO, SACA MENSAJE DE ERROR
+            $arraymessage = Message::all()
             ->where('id', '=', $id);
 
-            $party = Party::where('id', '=', $id);
+            $message = Message::where('id', '=', $id);
             
-            if (count($arrayParty) == 0) {
+            if (count($arraymessage) == 0) {
                 return response()->json([
-                    "data" => $arrayParty,
-                    "message" => "No se ha encontrado la party"
+                    "data" => $arraymessage,
+                    "message" => "No se ha encontrado el message"
                 ]);
             }else{
-                $party->delete();
+                $message->delete();
                 return response()->json([
-                    "data" => $arrayParty,
-                    "message" => "Party borrada correctamente"
+                    "data" => $arraymessage,
+                    "message" => "Message borrado correctamente"
                 ]);
             }
 

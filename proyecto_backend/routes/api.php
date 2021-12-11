@@ -9,6 +9,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\FriendshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,3 +132,25 @@ Route::put('updateMember', [MemberController::class, "memberUpdate"]);
 
 //BORRAR MEMBER
 Route::delete('deleteMember', [MemberController::class, "memberDelete"]);
+
+//************************//
+//ENDPOINTS DE FRIENDSHIPS//
+//************************//
+
+//LISTA DE TODOS LOS FRIENDSHIPS
+Route::get('friendships', [FriendshipController::class, "friendshipsAll"]);
+
+//FRIENDSHIP POR ID
+Route::post('friendshipByID', [FriendshipController::class, "friendshipByID"]);
+
+//FRIENDSHIP POR ID DE PLAYER
+Route::post('friendshipByPlayerID', [FriendshipController::class, "friendshipByPlayerID"]);
+
+//NUEVO FRIENDSHIP
+Route::post('newFriendship', [FriendshipController::class, "friendshipAdd"]);
+
+//MODIFICAR FRIENDSHIP
+Route::put('updateFriendship', [FriendshipController::class, "friendshipUpdate"]);
+
+//BORRAR FRIENDSHIP
+Route::delete('deleteFriendship', [FriendshipController::class, "friendshipDelete"]);

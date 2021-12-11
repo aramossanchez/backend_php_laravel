@@ -78,13 +78,13 @@
     * Borrar message ya existente --> /api/deleteMessage (DELETE)
 
 * MEMBER
-    * Ver todos los members --> 
-    * Buscar member por ID --> 
-    * Buscar member por party --> 
-    * Buscar member por player --> 
-    * Crear member nuevo --> 
-    * Editar member ya existente --> 
-    * Borrar member ya existente --> 
+    * Ver todos los members --> /api/members (GET)
+    * Buscar member por ID --> /api/memberByID (POST)
+    * Buscar member por party --> /api/memberByPartyID (POST)
+    * Buscar member por player --> /api/memberByPlayerID (POST)
+    * Crear member nuevo --> /api/newMember (POST)
+    * Editar member ya existente --> /api/updateMember (PUT)
+    * Borrar member ya existente --> /api/deleteMember (DELETE)
 
 * FRIENDSHIP
     * Ver todos los friendships --> 

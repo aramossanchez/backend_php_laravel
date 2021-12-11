@@ -40,10 +40,7 @@
 ## ENDPOINTS DE LA API
 
 * ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS
-
-<br>
-
-[![Probar en Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f?action=collection%2Ffork&collection-url=entityId%3D11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f%26entityType%3Dcollection%26workspaceId%3D16ffb9c9-152b-4dd3-bcad-3519fd225e65)
+    * [![Probar en Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f?action=collection%2Ffork&collection-url=entityId%3D11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f%26entityType%3Dcollection%26workspaceId%3D16ffb9c9-152b-4dd3-bcad-3519fd225e65)
 
 * PLAYER
     * Ver todos los players --> /api/players (GET)
@@ -87,7 +84,9 @@
     * Borrar member ya existente --> /api/deleteMember (DELETE)
 
 * FRIENDSHIP
-    * Ver todos los friendships --> 
-    * Crear friendship nuevo --> 
-    * Editar friendship ya existente --> 
-    * Borrar friendship ya existente --> 
+    * Ver todos los friendships --> /api/friendships (GET)
+    * Buscar friendship por ID --> /api/friendshipByID (POST)
+    * Buscar friendship por player --> /api/friendshipByPlayerID (POST)
+    * Crear friendship nuevo --> /api/newFriendship (POST)
+    * Editar friendship ya existente --> /api/updateFriendship (PUT)
+    * Borrar friendship ya existente --> /api/deleteFriendship (DELETE)

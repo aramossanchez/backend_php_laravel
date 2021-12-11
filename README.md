@@ -47,10 +47,11 @@
     * Logout de la aplicación -->
 
 * GAME
-    * Ver todos los games --> 
-    * Crear game nuevo --> 
-    * Editar game ya existente --> 
-    * Borrar game ya existente --> 
+    * Ver todos los games --> /api/games (GET)
+    * Buscar game por ID --> /api/gameByID (POST)
+    * Crear game nuevo --> /api/newGame (POST)
+    * Editar game ya existente --> /api/updateGame (PUT)
+    * Borrar game ya existente --> /api/deleteGame (DELETE)
 
 * PARTY
     * Ver todas las parties --> 

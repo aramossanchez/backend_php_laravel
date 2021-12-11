@@ -1,1 +1,0 @@
-web: proyecto_backend/vendor/bin/heroku-php-apache2 proyecto_backend/public/

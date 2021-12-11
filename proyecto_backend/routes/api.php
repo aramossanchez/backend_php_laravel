@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+//IMPORTO CONTROLLERS
+use App\Http\Controllers\GameController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +17,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+//******************//
+//ENDPOINTS DE GAMES//
+//******************//
+
+//LISTA DE TODOS LOS GAMES
+Route::get('games', [GameController::class, "gamesAll"]);
+
+//GAME POR ID
+Route::post('gameByID', [GameController::class, "gameByID"]);
+
+//NUEVO GAME
+Route::post('newGame', [GameController::class, "gameAdd"]);
+
+//MODIFICAR GAME
+Route::put('updateGame', [GameController::class, "gameUpdate"]);
+
+//BORRAR GAME
+Route::delete('deleteGame', [GameController::class, "gameDelete"]);

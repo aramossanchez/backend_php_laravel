@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //IMPORTO CONTROLLERS
+use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PartyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,28 @@ use App\Http\Controllers\GameController;
 //     return $request->user();
 // });
 
-//******************//
-//ENDPOINTS DE GAMES//
-//******************//
+//*******************//
+//ENDPOINTS DE PLAYER//
+//*******************//
+
+//LISTA DE TODOS LOS PLAYERS
+Route::get('players', [PlayerController::class, "playersAll"]);
+
+//PLAYER POR ID
+Route::post('playerByID', [PlayerController::class, "playerByID"]);
+
+//NUEVO PLAYER
+Route::post('newPlayer', [PlayerController::class, "playerAdd"]);
+
+//MODIFICAR PLAYER
+Route::put('updatePlayer', [PlayerController::class, "playerUpdate"]);
+
+//BORRAR PLAYER
+Route::delete('deletePlayer', [PlayerController::class, "playerDelete"]);
+
+//*****************//
+//ENDPOINTS DE GAME//
+//*****************//
 
 //LISTA DE TODOS LOS GAMES
 Route::get('games', [GameController::class, "gamesAll"]);
@@ -39,3 +60,22 @@ Route::put('updateGame', [GameController::class, "gameUpdate"]);
 
 //BORRAR GAME
 Route::delete('deleteGame', [GameController::class, "gameDelete"]);
+
+//******************//
+//ENDPOINTS DE PARTY//
+//******************//
+
+// //LISTA DE TODAS LAS PARTIES
+// Route::get('parties', [PartyController::class, "partiesAll"]);
+
+// //GAME POR ID
+// Route::post('gameByID', [PartyController::class, "gameByID"]);
+
+// //NUEVO GAME
+// Route::post('newGame', [PartyController::class, "gameAdd"]);
+
+// //MODIFICAR GAME
+// Route::put('updateGame', [PartyController::class, "gameUpdate"]);
+
+// //BORRAR GAME
+// Route::delete('deleteGame', [PartyController::class, "gameDelete"]);

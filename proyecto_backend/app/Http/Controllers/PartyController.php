@@ -27,119 +27,143 @@ class PartyController extends Controller
         }
     }
 
-    // //OBTENER GAME POR ID
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // public function gameByID(Request $request){
+    //OBTENER PARTY POR ID
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function partyByID(Request $request){
 
-    //     $id = $request->input('id');
+        $id = $request->input('id');
 
-    //     try {
-    //         $game = Game::all()
-    //         ->where('id', "=", $id);
-    //         return $game;
+        try {
 
-    //     } catch (QueryException $error) {
+            $party = Party::all()
+            ->where('id', "=", $id);
+            return $party;
 
-    //         $codigoError = $error->errorInfo[1];
-    //         if($codigoError){
-    //             return "Error $codigoError";
-    //         }
-    //     }
-    // }
+        } catch (QueryException $error) {
 
-    // //CREAR GAME
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // public function gameAdd (Request $request){
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
+        }
+    }
 
-    //     $title = $request->input('title');
-    //     $thumbnail_url = $request->input('thumbnail_url');
-    //     $url = $request->input('url');
+    //OBTENEMOS PARTY POR ID DE GAME
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function partyByGameID(Request $request){
 
-    //     try {
+        $id = $request->input('id');
 
-    //         return Game::create(
-    //             [
-    //                 'title' => $title,
-    //                 'thumbnail_url' => $thumbnail_url,
-    //                 'url' => $url
-    //             ]
-    //         );
+        try {
+            $party = Party::selectRaw('parties.name , games.title, players.username')
+            ->join('games', 'parties.GameID', '=', 'games.id')
+            ->where('parties.GameID', "=", $id)
+            ->join('players', 'parties.OwnerID', '=', 'players.id')
+            ->get();
+            return $party;
 
-    //     } catch (QueryException $error) {
+        } catch (QueryException $error) {
 
-    //         $codigoError = $error->errorInfo[1];
-    //         if($codigoError){
-    //             return "Error $codigoError";
-    //         }
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
+        }
+    }
+
+    //CREAR PARTY
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function partyAdd (Request $request){
+
+        $name = $request->input('name');
+        $OwnerID = $request->input('OwnerID');
+        $GameID = $request->input('GameID');
+
+        try {
+
+            return Party::create(
+                [
+                    'name' => $name,
+                    'OwnerID' => $OwnerID,
+                    'GameID' => $GameID
+                ]
+            );
+
+        } catch (QueryException $error) {
+
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
             
-    //     }
-    // }
+        }
+    }
 
-    // //MODIFICAR GAME
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // public function gameUpdate (Request $request){
+    //MODIFICAR PARTY
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function partyUpdate (Request $request){
 
-    //     $id = $request->input('id');
-    //     $title = $request->input('title');
-    //     $thumbnail_url = $request->input('thumbnail_url');
-    //     $url = $request->input('url');
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $OwnerID = $request->input('OwnerID');
+        $GameID = $request->input('GameID');
 
-    //     try {
+        try {
 
-    //         $game = Game::where('id', '=', $id)
-    //         ->update(
-    //             [
-    //                 'title' => $title,
-    //                 'thumbnail_url' => $thumbnail_url,
-    //                 'url' => $url
-    //             ]
-    //         );
-    //         return Game::all()
-    //         ->where('id', "=", $id);
+            $party = Party::where('id', '=', $id)
+            ->update(
+                [
+                    'name' => $name,
+                    'OwnerID' => $OwnerID,
+                    'GameID' => $GameID
+                ]
+            );
+            return Party::all()
+            ->where('id', "=", $id);
 
-    //     } catch (QueryException $error) {
+        } catch (QueryException $error) {
 
-    //         $codigoError = $error->errorInfo[1];
-    //         if($codigoError){
-    //             return "Error $codigoError";
-    //         }
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
 
-    //     }
-    // }
+        }
+    }
 
-    // //BORRAR GAME POR ID
-    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // public function gameDelete(Request $request){
+    //BORRAR PARTY POR ID
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function partyDelete(Request $request){
 
-    //     $id = $request->input('id');
+        $id = $request->input('id');
 
-    //     try {
-    //         //BUSCA EL GAME POR ID. SI EXISTE, BORRA EL GAME. SI NO, SACA MENSAJE DE ERROR
-    //         $arrayGame = Game::all()
-    //         ->where('id', '=', $id);
+        try {
+            //BUSCA LA PARTY POR ID. SI EXISTE, BORRA LA PARTY. SI NO, SACA MENSAJE DE ERROR
+            $arrayParty = Party::all()
+            ->where('id', '=', $id);
 
-    //         $game = Game::where('id', '=', $id);
+            $party = Party::where('id', '=', $id);
             
-    //         if (count($arrayGame) == 0) {
-    //             return response()->json([
-    //                 "data" => $arrayGame,
-    //                 "message" => "No se ha encontrado el game"
-    //             ]);
-    //         }else{
-    //             $game->delete();
-    //             return response()->json([
-    //                 "data" => $arrayGame,
-    //                 "message" => "Game borrado correctamente"
-    //             ]);
-    //         }
+            if (count($arrayParty) == 0) {
+                return response()->json([
+                    "data" => $arrayParty,
+                    "message" => "No se ha encontrado la party"
+                ]);
+            }else{
+                $party->delete();
+                return response()->json([
+                    "data" => $arrayParty,
+                    "message" => "Party borrada correctamente"
+                ]);
+            }
 
-    //     } catch (QueryException $error) {
+        } catch (QueryException $error) {
 
-    //         $codigoError = $error->errorInfo[1];
-    //         if($codigoError){
-    //             return "Error $codigoError";
-    //         }
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
 
-    //     }
-    // }
+        }
+    }
 }

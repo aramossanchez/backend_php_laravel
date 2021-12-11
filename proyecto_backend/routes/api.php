@@ -65,17 +65,20 @@ Route::delete('deleteGame', [GameController::class, "gameDelete"]);
 //ENDPOINTS DE PARTY//
 //******************//
 
-// //LISTA DE TODAS LAS PARTIES
-// Route::get('parties', [PartyController::class, "partiesAll"]);
+//LISTA DE TODAS LAS PARTIES
+Route::get('parties', [PartyController::class, "partiesAll"]);
 
-// //GAME POR ID
-// Route::post('gameByID', [PartyController::class, "gameByID"]);
+//PARTY POR ID
+Route::post('partyByID', [PartyController::class, "partyByID"]);
 
-// //NUEVO GAME
-// Route::post('newGame', [PartyController::class, "gameAdd"]);
+//PARTY POR ID DE GAME
+Route::post('partyByIDGame', [PartyController::class, "partyByGameID"]);
 
-// //MODIFICAR GAME
-// Route::put('updateGame', [PartyController::class, "gameUpdate"]);
+//NUEVO PARTY
+Route::post('newParty', [PartyController::class, "partyAdd"]);
 
-// //BORRAR GAME
-// Route::delete('deleteGame', [PartyController::class, "gameDelete"]);
+//MODIFICAR PARTY
+Route::put('updateParty', [PartyController::class, "partyUpdate"]);
+
+//BORRAR PARTY
+Route::delete('deleteParty', [PartyController::class, "partyDelete"]);

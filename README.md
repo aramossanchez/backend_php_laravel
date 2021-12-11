@@ -55,11 +55,12 @@
     * Borrar game ya existente --> /api/deleteGame (DELETE)
 
 * PARTY
-    * Ver todas las parties --> 
-    * Crear party nueva --> 
-    * Editar party ya existente --> 
-    * Borrar party ya existente --> 
-    * Buscar party por game --> 
+    * Ver todas las parties --> /api/parties (GET)
+    * Buscar party por ID --> /api/partyByID (POST)
+    * Buscar party por game --> /api/partyByIDGame (POST)
+    * Crear party nueva --> /api/newParty (POST)
+    * Editar party ya existente --> /api/updateParty (PUT)
+    * Borrar party ya existente --> /api/deleteParty (DELETE)
 
 * MESSAGE
     * Ver todos los messages --> 

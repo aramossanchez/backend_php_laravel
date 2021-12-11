@@ -131,18 +131,18 @@ class PlayerController extends Controller
         }
     }
 
-    //BORRAR GAME POR ID
+    //BORRAR PLAYER POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function playerDelete(Request $request){
 
         $id = $request->input('id');
 
         try {
-            //BUSCA EL GAME POR ID. SI EXISTE, BORRA EL GAME. SI NO, SACA MENSAJE DE ERROR
+            //BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR
             $arrayPlayer = Player::all()
             ->where('id', '=', $id);
 
-            $game = Player::where('id', '=', $id);
+            $player = Player::where('id', '=', $id);
             
             if (count($arrayPlayer) == 0) {
                 return response()->json([
@@ -150,7 +150,7 @@ class PlayerController extends Controller
                     "message" => "No se ha encontrado el player"
                 ]);
             }else{
-                $game->delete();
+                $player->delete();
                 return response()->json([
                     "data" => $arrayPlayer,
                     "message" => "Player borrado correctamente"

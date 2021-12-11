@@ -8,6 +8,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,3 +106,28 @@ Route::put('updateMessage', [MessageController::class, "messageUpdate"]);
 
 //BORRAR MESSAGE
 Route::delete('deleteMessage', [MessageController::class, "messageDelete"]);
+
+//*********************//
+//ENDPOINTS DE MEMBERS//
+//*********************//
+
+//LISTA DE TODOS LOS MEMBERS
+Route::get('members', [MemberController::class, "membersAll"]);
+
+//MEMBER POR ID
+Route::post('memberByID', [MemberController::class, "memberByID"]);
+
+//MEMBER POR ID DE PARTY
+Route::post('memberByPartyID', [MemberController::class, "memberByPartyID"]);
+
+//MEMBER POR ID DE PLAYER
+Route::post('memberByPlayerID', [MemberController::class, "memberByPlayerID"]);
+
+//NUEVO MEMBER
+Route::post('newMember', [MemberController::class, "memberAdd"]);
+
+//MODIFICAR MEMBER
+Route::put('updateMember', [MemberController::class, "memberUpdate"]);
+
+//BORRAR MEMBER
+Route::delete('deleteMember', [MemberController::class, "memberDelete"]);

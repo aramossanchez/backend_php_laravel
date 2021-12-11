@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
-use App\Models\Message;
+use App\Models\Member;
 
-class MessageController extends Controller
+class MemberController extends Controller
 {
-    //OBTENER LISTADO DE TODOS LOS MESSAGES
+    //OBTENER LISTADO DE TODOS LOS MEMBERS
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messagesAll(){
+    public function membersAll(){
         try {
 
-            $messages = Message::all();
-            return $messages;
+            $members = Member::all();
+            return $members;
 
         } catch (QueryException $error) {
 
@@ -27,17 +27,17 @@ class MessageController extends Controller
         }
     }
 
-    //OBTENER MESSAGE POR ID
+    //OBTENER MEMBER POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messageByID(Request $request){
+    public function memberByID(Request $request){
 
         $id = $request->input('id');
 
         try {
 
-            $message = Message::all()
+            $member = Member::all()
             ->where('id', "=", $id);
-            return $message;
+            return $member;
 
         } catch (QueryException $error) {
 
@@ -48,19 +48,19 @@ class MessageController extends Controller
         }
     }
 
-    //OBTENER MESSAGE POR ID DE PARTY
+    //OBTENER MEMBER POR ID DE PARTY
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messageByPartyID(Request $request){
+    public function memberByPartyID(Request $request){
 
         $id = $request->input('id');
 
         try {
-            $message = Message::selectRaw('messages.message, players.username, parties.name')
-            ->join('parties', 'parties.id', '=', 'messages.PartyID')
-            ->where('messages.PartyID', "=", $id)
-            ->join('players', 'players.id', '=', 'messages.FromPlayer')
+            $member = Member::selectRaw('members.id, parties.name, players.username')
+            ->join('parties', 'parties.id', '=', 'members.PartyID')
+            ->where('members.PartyID', "=", $id)
+            ->join('players', 'players.id', '=', 'members.PlayerID')
             ->get();
-            return $message;
+            return $member;
 
         } catch (QueryException $error) {
 
@@ -71,23 +71,42 @@ class MessageController extends Controller
         }
     }
 
-    //CREAR MESSAGE
+    //OBTENER MEMBER POR ID DE PLAYER
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messageAdd (Request $request){
+    public function memberByPlayerID(Request $request){
 
-        $message = $request->input('message');
-        $date = $request->input('date');
-        $FromPlayer = $request->input('FromPlayer');
+        $id = $request->input('id');
+
+        try {
+            $member = Member::selectRaw('members.id, parties.name, players.username')
+            ->join('players', 'players.id', '=', 'members.PlayerID')
+            ->where('members.PlayerID', "=", $id)
+            ->join('parties', 'parties.id', '=', 'members.PartyID')
+            ->get();
+            return $member;
+
+        } catch (QueryException $error) {
+
+            $codigoError = $error->errorInfo[1];
+            if($codigoError){
+                return "Error $codigoError";
+            }
+        }
+    }
+
+    //CREAR MEMBER
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function memberAdd (Request $request){
+
         $PartyID = $request->input('PartyID');
+        $PlayerID = $request->input('PlayerID');
 
         try {
 
-            return Message::create(
+            return Member::create(
                 [
-                    'message' => $message,
-                    'date' => $date,
-                    'FromPlayer' => $FromPlayer,
-                    'PartyID' => $PartyID
+                    'PartyID' => $PartyID,
+                    'PlayerID' => $PlayerID
                 ]
             );
 
@@ -101,28 +120,24 @@ class MessageController extends Controller
         }
     }
 
-    //MODIFICAR MESSAGE
+    //MODIFICAR MEMBER
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messageUpdate (Request $request){
+    public function memberUpdate (Request $request){
 
         $id = $request->input('id');
-        $message = $request->input('message');
-        $date = $request->input('date');
-        $FromPlayer = $request->input('FromPlayer');
         $PartyID = $request->input('PartyID');
+        $PlayerID = $request->input('PlayerID');
 
         try {
 
-            $message = Message::where('id', '=', $id)
+            $member = Member::where('id', '=', $id)
             ->update(
                 [
-                    'message' => $message,
-                    'date' => $date,
-                    'FromPlayer' => $FromPlayer,
-                    'PartyID' => $PartyID
+                    'PartyID' => $PartyID,
+                    'PlayerID' => $PlayerID
                 ]
             );
-            return Message::all()
+            return Member::all()
             ->where('id', "=", $id);
 
         } catch (QueryException $error) {
@@ -135,29 +150,29 @@ class MessageController extends Controller
         }
     }
 
-    //BORRAR MESSAGE POR ID
+    //BORRAR MEMBER POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function messageDelete(Request $request){
+    public function memberDelete(Request $request){
 
         $id = $request->input('id');
 
         try {
-            //BUSCA EL MESSAGE POR ID. SI EXISTE, BORRA EL MESSAGE. SI NO, SACA MENSAJE DE ERROR
-            $arraymessage = Message::all()
+            //BUSCA EL MEMBER POR ID. SI EXISTE, BORRA EL MEMBER. SI NO, SACA MENSAJE DE ERROR
+            $arrayMember = Member::all()
             ->where('id', '=', $id);
 
-            $message = Message::where('id', '=', $id);
+            $member = Member::where('id', '=', $id);
             
-            if (count($arraymessage) == 0) {
+            if (count($arrayMember) == 0) {
                 return response()->json([
-                    "data" => $arraymessage,
-                    "message" => "No se ha encontrado el message"
+                    "data" => $arrayMember,
+                    "message" => "No se ha encontrado el member"
                 ]);
             }else{
-                $message->delete();
+                $member->delete();
                 return response()->json([
-                    "data" => $arraymessage,
-                    "message" => "Message borrado correctamente"
+                    "data" => $arrayMember,
+                    "message" => "Member borrado correctamente"
                 ]);
             }
 

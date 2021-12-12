@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //IMPORTO CONTROLLERS
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
@@ -26,24 +27,35 @@ use App\Http\Controllers\FriendshipController;
 //     return $request->user();
 // });
 
+//**************************//
+//ENDPOINTS DE AUTENTICACIÓN//
+//**************************//
+
+Route::post('register', [AuthController::class, "register"]);
+Route::post('login', [AuthController::class, "login"]);
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('players', [PlayerController::class, "playersAll"]);
+});
+
 //*******************//
 //ENDPOINTS DE PLAYER//
 //*******************//
 
-//LISTA DE TODOS LOS PLAYERS
-Route::get('players', [PlayerController::class, "playersAll"]);
+// //LISTA DE TODOS LOS PLAYERS
+// Route::get('players', [PlayerController::class, "playersAll"]);
 
-//PLAYER POR ID
-Route::post('playerByID', [PlayerController::class, "playerByID"]);
+// //PLAYER POR ID
+// Route::post('playerByID', [PlayerController::class, "playerByID"]);
 
-//NUEVO PLAYER
-Route::post('newPlayer', [PlayerController::class, "playerAdd"]);
+// //NUEVO PLAYER
+// Route::post('newPlayer', [PlayerController::class, "playerAdd"]);
 
-//MODIFICAR PLAYER
-Route::put('updatePlayer', [PlayerController::class, "playerUpdate"]);
+// //MODIFICAR PLAYER
+// Route::put('updatePlayer', [PlayerController::class, "playerUpdate"]);
 
-//BORRAR PLAYER
-Route::delete('deletePlayer', [PlayerController::class, "playerDelete"]);
+// //BORRAR PLAYER
+// Route::delete('deletePlayer', [PlayerController::class, "playerDelete"]);
 
 //*****************//
 //ENDPOINTS DE GAME//

@@ -97,3 +97,40 @@
 php artisan migrate:fresh --seed
 ```
 * Para que se ejecuten todos los seeders, además, se ha añadido en el archivo **Database\Seeders\DatabaseSeeder** los diferentes seeders que existen en la API.
+
+## IMPLEMENTACIÓN DE SEGURIDAD EN LA API: PASSPORT
+* Se instala passport en el proyecto con el siguiente comando:
+```
+composer require laravel/passport
+```
+* Al instalar passport se crean migrations nuevos, y debemos de hacer migrate de nuevo para actualizar las tablas de nuestra base de datos.
+* Para poder generar tokens de acceso, es necesario ejecutar el siguiente comando:
+```
+php artisan passport:install
+```
+* Se comprueba que en model **User** existen las siguientes lineas:
+```
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+```
+* Dentro de la clase **class User extends Authenticatable** tiene que estar la siguiente línea:
+```
+use Notifiable, HasApiTokens;
+```
+* En el archivo /App/Providers/AuthServiceProvider, hay que añadir la siguiente línea:
+```
+use Laravel\Passport\Passport;
+```
+* Y dentro del método boot se llama al metodo routes de passport:
+```
+Passport::routes();
+```
+* En /config/auth.php, dentro del array 'guards' añadimos lo siguiente:
+```
+'api' => [
+        'driver' => 'passport', // <---
+        'provider' => 'users',
+],
+```
+* Creamos AuthController, donde se añaden las funciones de singup y login

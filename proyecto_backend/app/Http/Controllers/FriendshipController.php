@@ -70,6 +70,7 @@ class FriendshipController extends Controller
             ->where('friendships.Player2_ID', "=", $id)
             ->get();
             array_push($busqueda, $friendship2);
+            
             return $busqueda;
 
         } catch (QueryException $error) {

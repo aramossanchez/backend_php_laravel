@@ -39,7 +39,7 @@
 
 ## ENDPOINTS DE LA API
 
-* ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS
+* ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS (DESPLEGADO EN HEROKU)
     * [![Probar en Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f?action=collection%2Ffork&collection-url=entityId%3D11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f%26entityType%3Dcollection%26workspaceId%3D16ffb9c9-152b-4dd3-bcad-3519fd225e65)
 
 * PLAYER
@@ -90,3 +90,10 @@
     * Crear friendship nuevo --> /api/newFriendship (POST)
     * Editar friendship ya existente --> /api/updateFriendship (PUT)
     * Borrar friendship ya existente --> /api/deleteFriendship (DELETE)
+
+## MIGRATION Y SEEDERS
+* Las tablas y los registros de cada tabla están creados con archivos de migrations y de seeders. Para crear tanto las tablas como los registros, además de sobreescribir la información guardada en la base de datos, se usa el siguiente comando:
+```
+php artisan migrate:fresh --seed
+```
+* Para que se ejecuten todos los seeders, además, se ha añadido en el archivo **Database\Seeders\DatabaseSeeder** los diferentes seeders que existen en la API.

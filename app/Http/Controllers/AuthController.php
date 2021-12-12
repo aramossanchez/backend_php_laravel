@@ -14,12 +14,12 @@ class AuthController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function userRegister(Request $request)
     {
-        // $this->validate($request, [
-        //     'username' => 'required|min:4',
-        //     'email' => 'required|email',
-        //     'password' => 'required|min:8',
-        //     'role' => 'required|min:4',
-        // ]);
+        $this->validate($request, [
+            'username' => 'required|min:4',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'role' => 'required|min:4',
+        ]);
 
         $user = User::create([
             'username' => $request->username,

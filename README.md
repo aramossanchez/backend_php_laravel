@@ -39,7 +39,7 @@
 
 ## ENDPOINTS DE LA API
 
-* ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS (DESPLEGADO EN HEROKU)
+* ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS (LOCAL)
     * [![Probar en Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f?action=collection%2Ffork&collection-url=entityId%3D11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f%26entityType%3Dcollection%26workspaceId%3D16ffb9c9-152b-4dd3-bcad-3519fd225e65)
 
 * USER

@@ -20,9 +20,9 @@ class CreateMessagesTable extends Migration
             $table->unsignedInteger('FromPlayer');
             $table->foreign('FromPlayer')
             ->references('id')
-            ->on('players')
+            ->on('users')
             ->unsigned()
-            ->constrained('players')
+            ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->unsignedInteger('PartyID');

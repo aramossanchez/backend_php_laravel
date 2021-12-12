@@ -26,9 +26,9 @@ class CreateMembersTable extends Migration
             $table->unsignedInteger('PlayerID');
             $table->foreign('PlayerID')
             ->references('id')
-            ->on('players')
+            ->on('users')
             ->unsigned()
-            ->constrained('players')
+            ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

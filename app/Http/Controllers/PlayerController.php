@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
-use App\Models\Player;
+use App\Models\User;
 
 class PlayerController extends Controller
 {
-    //OBTENER LISTADO DE TODOS LOS PLAYERS
+    //OBTENER LISTADO DE TODOS LOS USERS
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function playersAll(){
         try {
 
-            $players = Player::all();
+            $players = User::all();
             return $players;
 
         } catch (QueryException $error) {
@@ -27,14 +27,14 @@ class PlayerController extends Controller
         }
     }
 
-    //OBTENER PLAYER POR ID
+    //OBTENER USER POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function playerByID(Request $request){
-
+        
         $id = $request->input('id');
 
         try {
-            $player = Player::all()
+            $player = User::all()
             ->where('id', "=", $id);
             return $player;
 
@@ -47,47 +47,7 @@ class PlayerController extends Controller
         }
     }
 
-    //CREAR PLAYER
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function playerAdd (Request $request){
-
-        $username = $request->input('username');
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $role = $request->input('role');
-        $steamUsername = $request->input('steamUsername');
-        $originUsername = $request->input('originUsername');
-        $epicgamesUsername = $request->input('epicgamesUsername');
-        $battlenetUsername = $request->input('battlenetUsername');
-        $riotUsername = $request->input('riotUsername');
-
-        try {
-
-            return Player::create(
-                [
-                    'username' => $username,
-                    'email' => $email,
-                    'password' => $password,
-                    'role' => $role,
-                    'steamUsername' => $steamUsername,
-                    'originUsername' => $originUsername,
-                    'epicgamesUsername' => $epicgamesUsername,
-                    'battlenetUsername' => $battlenetUsername,
-                    'riotUsername' => $riotUsername
-                ]
-            );
-
-        } catch (QueryException $error) {
-
-            $codigoError = $error->errorInfo[1];
-            if($codigoError){
-                return "Error $codigoError";
-            }
-            
-        }
-    }
-
-    //MODIFICAR PLAYER
+    //MODIFICAR USER
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function playerUpdate (Request $request){
 
@@ -104,7 +64,7 @@ class PlayerController extends Controller
 
         try {
 
-            $player = Player::where('id', '=', $id)
+            $player = User::where('id', '=', $id)
             ->update(
                 [
                     'username' => $username,
@@ -118,7 +78,7 @@ class PlayerController extends Controller
                     'riotUsername' => $riotUsername
                 ]
             );
-            return Player::all()
+            return User::all()
             ->where('id', "=", $id);
 
         } catch (QueryException $error) {
@@ -131,7 +91,7 @@ class PlayerController extends Controller
         }
     }
 
-    //BORRAR PLAYER POR ID
+    //BORRAR USER POR ID
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function playerDelete(Request $request){
 
@@ -139,10 +99,10 @@ class PlayerController extends Controller
 
         try {
             //BUSCA EL PLAYER POR ID. SI EXISTE, BORRA EL PLAYER. SI NO, SACA MENSAJE DE ERROR
-            $arrayPlayer = Player::all()
+            $arrayPlayer = User::all()
             ->where('id', '=', $id);
 
-            $player = Player::where('id', '=', $id);
+            $player = User::where('id', '=', $id);
             
             if (count($arrayPlayer) == 0) {
                 return response()->json([

@@ -55,10 +55,10 @@ class MessageController extends Controller
         $id = $request->input('id');
 
         try {
-            $message = Message::selectRaw('messages.message, players.username, parties.name')
+            $message = Message::selectRaw('messages.message, users.username, parties.name')
             ->join('parties', 'parties.id', '=', 'messages.PartyID')
             ->where('messages.PartyID', "=", $id)
-            ->join('players', 'players.id', '=', 'messages.FromPlayer')
+            ->join('users', 'users.id', '=', 'messages.FromPlayer')
             ->get();
             return $message;
 

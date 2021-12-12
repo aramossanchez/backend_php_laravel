@@ -21,6 +21,6 @@ class Member extends Model
 
     public function players()
     {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(User::class);
     }
 }

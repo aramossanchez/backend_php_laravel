@@ -19,6 +19,11 @@ class Party extends Model
     {
         return $this->belongsTo(Game::class);
     }
+
+    public function players()
+    {
+        return $this->belongsTo(User::class);
+    }
     
     public function messages()
     {

@@ -18,7 +18,7 @@ class Message extends Model
 
     public function players()
     {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(User::class);
     }
 
     public function parties()

@@ -59,14 +59,14 @@ class FriendshipController extends Controller
 
             $busqueda = array();
 
-            $friendship1 = Friendship::selectRaw('players.username')
-            ->join('players', 'players.id', '=', 'friendships.Player2_ID')
+            $friendship1 = Friendship::selectRaw('users.username, users.id')
+            ->join('users', 'users.id', '=', 'friendships.Player2_ID')
             ->where('friendships.Player1_ID', "=", $id)
             ->get();
             array_push($busqueda, $friendship1);
 
-            $friendship2 = Friendship::selectRaw('players.username')
-            ->join('players', 'players.id', '=', 'friendships.Player1_ID')
+            $friendship2 = Friendship::selectRaw('users.username, users.id')
+            ->join('users', 'users.id', '=', 'friendships.Player1_ID')
             ->where('friendships.Player2_ID', "=", $id)
             ->get();
             array_push($busqueda, $friendship2);

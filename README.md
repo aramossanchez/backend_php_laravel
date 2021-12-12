@@ -34,7 +34,6 @@
 * Eloquent --> usado para acceso y manejo de la base de datos del proyecto.
 * Passport --> usado para el sistema de autenticación en la API.
 * Git --> usado para tener alojado el proyecto en repositorio de github.
-* Docker --> usado para crear un contenedor de la aplicación.
 * Heroku --> usado para tener la API deployada.
 
 ## ENDPOINTS DE LA API
@@ -136,3 +135,33 @@ Passport::routes();
 ],
 ```
 * Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario y de login.
+
+## PARTICULARIDADES DE DESPLIEGUE (HEROKU)
+* Crear archivo Procfile, con el siguiente contenido:
+```
+web: vendor/bin/heroku-php-apache2 public/
+```
+* Acceder al archivo app/Providers/AppServiceProvider.php, y añadir las siguiente líneas:
+```
+public function register()
+    {
+        if(env('REDIRECT_HTTPS')){
+            $this->app['request']->server->set('HTTPS', true);
+        }
+    }
+```
+```
+public function boot(UrlGenerator $url)
+    {
+        if(env('REDIRECT_HTTPS')){
+            $url->formatScheme('https://');
+        }
+        Schema::defaultStringLength(191);
+    }
+```
+* Añadir variables de entorno en Heroku, en settings:
+***
+![Base de datos y sus relaciones](./proyecto_backend/app/Images/screenshot1.jpg)
+***
+
+* Eliminar /storage/*.key de archivo .gitignore, para hacer funcionar passport.

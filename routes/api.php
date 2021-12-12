@@ -33,8 +33,6 @@ use App\Http\Controllers\FriendshipController;
 
 Route::post('newUser', [AuthController::class, "userRegister"]);
 Route::post('loginUser', [AuthController::class, "userLogin"]);
-// //LISTA DE TODOS LOS PLAYERS
-Route::get('players', [PlayerController::class, "playersAll"]);
 
 Route::middleware('auth:api')->group(function () {
 
@@ -42,8 +40,8 @@ Route::middleware('auth:api')->group(function () {
     //ENDPOINTS DE PLAYER//
     //*******************//
 
-    // //LISTA DE TODOS LOS PLAYERS
-    // Route::get('players', [PlayerController::class, "playersAll"]);
+    //LISTA DE TODOS LOS PLAYERS
+    Route::get('players', [PlayerController::class, "playersAll"]);
 
     //PLAYER POR ID
     Route::post('playerByID', [PlayerController::class, "playerByID"]);

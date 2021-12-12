@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             PartySeeder::class,
             MessageSeeder::class,
             MemberSeeder::class,
-            Friendship::class,
+            FriendshipSeeder::class,
         ]);
     }
 }

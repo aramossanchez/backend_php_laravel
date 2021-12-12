@@ -14,6 +14,7 @@ class AuthController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function userRegister(Request $request)
     {
+        return "hola";
         // $this->validate($request, [
         //     'username' => 'required|min:4',
         //     'email' => 'required|email',
@@ -21,24 +22,24 @@ class AuthController extends Controller
         //     'role' => 'required|min:4',
         // ]);
 
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => $request->role,
-            'steamUsername' => $request->steamUsername,
-            'originUsername' => $request->originUsername,
-            'epicgamesUsername' => $request->epicgamesUsername,
-            'battlenetUsername' => $request->battlenetUsername,
-            'riotUsername' => $request->riotUsername
-        ]);
+        // $user = User::create([
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'password' => bcrypt($request->password),
+        //     'role' => $request->role,
+        //     'steamUsername' => $request->steamUsername,
+        //     'originUsername' => $request->originUsername,
+        //     'epicgamesUsername' => $request->epicgamesUsername,
+        //     'battlenetUsername' => $request->battlenetUsername,
+        //     'riotUsername' => $request->riotUsername
+        // ]);
 
         // $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-        return response()->json([
-            // 'token' => $token,
-            'user' => $user
-        ], 200);
+        // return response()->json([
+        //     'token' => $token,
+        //     'user' => $user
+        // ], 200);
     }
 
     //LOGIN DE USER

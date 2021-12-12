@@ -10,32 +10,40 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Registration
-     */
-    public function register(Request $request)
+    //REGISTRAR USER
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function userRegister(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:4',
+            'username' => 'required|min:4',
             'email' => 'required|email',
             'password' => 'required|min:8',
+            'role' => 'required|min:4',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+            'steamUsername' => $request->steamUsername,
+            'originUsername' => $request->originUsername,
+            'epicgamesUsername' => $request->epicgamesUsername,
+            'battlenetUsername' => $request->battlenetUsername,
+            'riotUsername' => $request->riotUsername
         ]);
 
         $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'token' => $token,
+            'user' => $user
+        ], 200);
     }
 
-    /**
-     * Login
-     */
-    public function login(Request $request)
+    //LOGIN DE USER
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function userLogin(Request $request)
     {
         $data = [
             'email' => $request->email,

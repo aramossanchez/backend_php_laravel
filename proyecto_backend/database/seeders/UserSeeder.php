@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Player;
+use App\Models\User;
 
-class PlayerSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class PlayerSeeder extends Seeder
      */
     public function run()
     {
-        Player::create([
+        User::create([
             'username' => 'admin',
             'email' => 'admin@admin.com',
             'password' => '12345678',
@@ -26,7 +26,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => 'admin01'
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'user',
             'email' => 'user@user.com',
             'password' => '12345678',
@@ -38,7 +38,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => 'user01'
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'armandohyeah',
             'email' => 'armandoramossanchez@gmail.com',
             'password' => '14651as5fg191a',
@@ -50,7 +50,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => 'armandohyeah'
         ]);
         
-        Player::create([
+        User::create([
             'username' => 'martin08',
             'email' => 'martin@gmail.com',
             'password' => 'adsf19qwer',
@@ -62,7 +62,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
         
-        Player::create([
+        User::create([
             'username' => 'carmina90',
             'email' => 'carmina@gmail.com',
             'password' => 'asdd1519v1a9sd10f',
@@ -74,7 +74,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
         
-        Player::create([
+        User::create([
             'username' => 'iria5',
             'email' => 'iria@gmail.com',
             'password' => 'er1g5d1fg890',
@@ -86,7 +86,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
         
-        Player::create([
+        User::create([
             'username' => 'MarioRS',
             'email' => 'mrs@gmail.com',
             'password' => '0f98a01f8a18',
@@ -98,7 +98,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'manolo60',
             'email' => 'manolo6060@gmail.com',
             'password' => 'a9f48e01f5a',
@@ -110,7 +110,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'carmen60',
             'email' => 'carmensanchezt@gmail.com',
             'password' => 'as1df91e981f',
@@ -122,7 +122,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => 'Carmen-nemraC'
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'victorS',
             'email' => 'victor@gmail.com',
             'password' => '1ad9sf1091d',
@@ -134,7 +134,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => 'rotcivLITTLE'
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'BlasLlario',
             'email' => 'blasllario@gmail.com',
             'password' => '1gh91g89h',
@@ -146,7 +146,7 @@ class PlayerSeeder extends Seeder
             'riotUsername' => null
         ]);
 
-        Player::create([
+        User::create([
             'username' => 'sergio-gonzalez',
             'email' => 'sergiogonzalez@gmail.com',
             'password' => '1r4rt98d4s2f',

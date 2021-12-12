@@ -19,9 +19,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'role',
+        'steamUsername',
+        'originUsername',
+        'epicgamesUsername',
+        'battlenetUsername',
+        'riotUsername'
     ];
 
     /**
@@ -42,4 +48,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //RELACIONES CON OTRAS TABLAS
+    public function friendships()
+    {
+        return $this->hasMany(Friendship::class);
+    }
+
+    public function parties()
+    {
+        return $this->hasMany(Party::class);
+    }
+    
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
+
 }

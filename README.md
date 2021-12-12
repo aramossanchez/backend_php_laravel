@@ -42,14 +42,16 @@
 * ENLACE A POSTMAN, CONFIGURADO CON TODOS LOS ENDPOINTS (DESPLEGADO EN HEROKU)
     * [![Probar en Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f?action=collection%2Ffork&collection-url=entityId%3D11138723-7f30b435-092e-48c3-93d5-3d97447d1b8f%26entityType%3Dcollection%26workspaceId%3D16ffb9c9-152b-4dd3-bcad-3519fd225e65)
 
-* PLAYER
+* USER
+    * Registro de nuevo user -- > /api/newUser (POST)
+    * Login en la aplicación --> /api/loginUser (POST)
+    * Logout de la aplicación --> 
+
+* PLAYER (PERTENECE A LA TABLA USER)
     * Ver todos los players --> /api/players (GET)
     * Buscar player por ID --> /api/playerByID (POST)
-    * Crear player nuevo --> /api/newPlayer (POST)
     * Editar player ya existente --> /api/updatePlayer (PUT)
     * Borrar player ya existente --> /api/deletePlayer (DELETE)
-    * Login en la aplicación --> 
-    * Logout de la aplicación --> 
 
 * GAME
     * Ver todos los games --> /api/games (GET)
@@ -92,7 +94,7 @@
     * Borrar friendship ya existente --> /api/deleteFriendship (DELETE)
 
 ## MIGRATION Y SEEDERS
-* Las tablas y los registros de cada tabla están creados con archivos de migrations y de seeders. Para crear tanto las tablas como los registros, además de sobreescribir la información guardada en la base de datos, se usa el siguiente comando:
+* Todas las tablas de la base de datos y los registros de la tabla **games** están creados con archivos de migrations y de seeders (solo se crean registros de games, ya que el registro de usuarios se debe de hacer de manera manual desde la API para poder usar login con token, y el resto de tablas tienen relaciones con la tabla **users**). Para crear tanto las tablas como los registros, además de sobreescribir la información guardada en la base de datos, se usa el siguiente comando:
 ```
 php artisan migrate:fresh --seed
 ```
@@ -133,4 +135,4 @@ Passport::routes();
         'provider' => 'users',
 ],
 ```
-* Creamos AuthController, donde se añaden las funciones de singup y login
+* Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario y de login.

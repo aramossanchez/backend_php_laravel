@@ -27,9 +27,9 @@ class CreatePartiesTable extends Migration
             $table->unsignedInteger('OwnerID');
             $table->foreign('OwnerID')
             ->references('id')
-            ->on('players')
+            ->on('users')
             ->unsigned()
-            ->constrained('players')
+            ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

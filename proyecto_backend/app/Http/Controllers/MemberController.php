@@ -55,10 +55,10 @@ class MemberController extends Controller
         $id = $request->input('id');
 
         try {
-            $member = Member::selectRaw('members.id, parties.name, players.username')
+            $member = Member::selectRaw('members.id, parties.name, users.username')
             ->join('parties', 'parties.id', '=', 'members.PartyID')
             ->where('members.PartyID', "=", $id)
-            ->join('players', 'players.id', '=', 'members.PlayerID')
+            ->join('users', 'users.id', '=', 'members.PlayerID')
             ->get();
             return $member;
 
@@ -78,8 +78,8 @@ class MemberController extends Controller
         $id = $request->input('id');
 
         try {
-            $member = Member::selectRaw('members.id, parties.name, players.username')
-            ->join('players', 'players.id', '=', 'members.PlayerID')
+            $member = Member::selectRaw('members.id, parties.name, users.username')
+            ->join('users', 'users.id', '=', 'members.PlayerID')
             ->where('members.PlayerID', "=", $id)
             ->join('parties', 'parties.id', '=', 'members.PartyID')
             ->get();

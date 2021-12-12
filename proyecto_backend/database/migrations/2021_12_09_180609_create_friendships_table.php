@@ -18,17 +18,17 @@ class CreateFriendshipsTable extends Migration
             $table->unsignedInteger('Player1_ID');
             $table->foreign('Player1_ID')
             ->references('id')
-            ->on('players')
+            ->on('users')
             ->unsigned()
-            ->constrained('players')
+            ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->unsignedInteger('Player2_ID');
             $table->foreign('Player2_ID')
             ->references('id')
-            ->on('players')
+            ->on('users')
             ->unsigned()
-            ->constrained('players')
+            ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

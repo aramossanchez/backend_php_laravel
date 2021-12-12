@@ -33,10 +33,10 @@ class AuthController extends Controller
             'riotUsername' => $request->riotUsername
         ]);
 
-        $token = $user->createToken('LaravelAuthApp')->accessToken;
+        // $token = $user->createToken('LaravelAuthApp')->accessToken;
 
         return response()->json([
-            'token' => $token,
+            // 'token' => $token,
             'user' => $user
         ], 200);
     }

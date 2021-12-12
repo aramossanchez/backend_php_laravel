@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -24,8 +23,7 @@ class AuthController extends Controller
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'role' => $request->role,
             'steamUsername' => $request->steamUsername,
             'originUsername' => $request->originUsername,

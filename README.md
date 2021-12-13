@@ -16,7 +16,7 @@
 ## BASE DE DATOS Y SUS RELACIONES
 
 ***
-![Base de datos y sus relaciones](./proyecto_backend/app/Images/screenshot1.jpg)
+![Base de datos y sus relaciones](./app/Images/screenshot1.jpg)
 ***
 
 * Player tiene una relación con **party de 1:N** (una party solo tiene un player creador, y un player puede ser creador de 0, 1 o varias parties).
@@ -130,11 +130,11 @@ Passport::routes();
 * En /config/auth.php, dentro del array 'guards' añadimos lo siguiente:
 ```
 'api' => [
-        'driver' => 'passport', // <---
+        'driver' => 'passport',
         'provider' => 'users',
 ],
 ```
-* Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario y de login.
+* Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario, de login y de logout.
 
 ## PARTICULARIDADES DE DESPLIEGUE (HEROKU)
 * Crear archivo Procfile, con el siguiente contenido:
@@ -161,7 +161,7 @@ public function boot(UrlGenerator $url)
 ```
 * Añadir variables de entorno en Heroku, en settings:
 ***
-![Base de datos y sus relaciones](./proyecto_backend/app/Images/screenshot1.jpg)
+![Variables de entorno](./app/Images/screenshot2.jpg)
 ***
 
 * Eliminar /storage/*.key de archivo .gitignore, para hacer funcionar passport.

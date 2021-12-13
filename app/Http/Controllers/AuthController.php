@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 use App\Models\User;
@@ -56,4 +57,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+
+    //LOGIN DE USER
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function userLogout(Request $request)
+    {
+        $user = Auth::user()->token();
+        $user->revoke();
+        return 'logged out';
+    }
+
 }

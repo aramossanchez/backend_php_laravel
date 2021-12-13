@@ -34,7 +34,6 @@
 * Eloquent --> usado para acceso y manejo de la base de datos del proyecto.
 * Passport --> usado para el sistema de autenticación en la API.
 * Git --> usado para tener alojado el proyecto en repositorio de github.
-* Docker --> usado para crear un contenedor de la aplicación.
 * Heroku --> usado para tener la API deployada.
 
 ## ENDPOINTS DE LA API
@@ -131,8 +130,8 @@ Passport::routes();
 * En /config/auth.php, dentro del array 'guards' añadimos lo siguiente:
 ```
 'api' => [
-        'driver' => 'passport', // <---
+        'driver' => 'passport',
         'provider' => 'users',
 ],
 ```
-* Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario y de login.
+* Creamos AuthController, donde se añaden las funciones de registro de nuevo usuario, de login y de logout.

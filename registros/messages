@@ -1,0 +1,27 @@
+{
+    "message": "1 vs 1",
+    "date": "2021-12-12",
+    "FromPlayer": 25,
+    "PartyID": 5
+}
+
+{
+    "message": "cuando quieras",
+    "date": "2021-12-12",
+    "FromPlayer": 15,
+    "PartyID": 5
+}
+
+{
+    "message": "¿alguien?",
+    "date": "2021-12-12",
+    "FromPlayer": 45,
+    "PartyID": 35
+}
+
+{
+    "message": "Me apunto.",
+    "date": "2021-12-12",
+    "FromPlayer": 25,
+    "PartyID": 15
+}

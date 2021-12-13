@@ -58,13 +58,4 @@ class AuthController extends Controller
         }
     }
 
-    //LOGIN DE USER
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function userLogout(Request $request)
-    {
-        $user = Auth::user()->token();
-        $user->revoke();
-        return 'logged out';
-    }
-
 }
